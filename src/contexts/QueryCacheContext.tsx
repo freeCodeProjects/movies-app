@@ -1,7 +1,8 @@
 import { ReactElement, createContext, useState } from 'react'
+import { QueryCache } from '../types'
 
 const useValue = () => {
-	const [queryCache, setQueryCache] = useState<{ [key: string]: object }>({})
+	const [queryCache, setQueryCache] = useState<QueryCache>({})
 
 	return {
 		queryCache,

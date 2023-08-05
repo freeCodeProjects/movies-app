@@ -8,8 +8,11 @@ const useFetch = (key: string, url: string) => {
 	const [startFetching, setStartFetching] = useState(false)
 	const { queryCache, setQueryCache } = useContext(QueryCacheContext)
 
+	const isValidCache =
+		(key in queryCache && queryCache[key].expireAt > Date.now()) || false
+
 	useEffect(() => {
-		if (!(key in queryCache)) {
+		if (!isValidCache) {
 			setStartFetching(true)
 		}
 		if (startFetching) {
@@ -29,7 +32,13 @@ const useFetch = (key: string, url: string) => {
 				throw new Error(data.status_message)
 			} else {
 				setData(data)
-				setQueryCache((prevData) => ({ ...prevData, [key]: data }))
+				setQueryCache((prevData) => ({
+					...prevData,
+					[key]: {
+						response: data,
+						expireAt: Date.now() + 86400000
+					}
+				}))
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -44,8 +53,8 @@ const useFetch = (key: string, url: string) => {
 		}
 	}
 
-	if (key in queryCache) {
-		return { isPending: false, data: queryCache[key] }
+	if (isValidCache) {
+		return { isPending: false, data: queryCache[key].response }
 	}
 
 	return { isPending, data, error }

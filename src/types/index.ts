@@ -27,3 +27,10 @@ export interface MovieListItem {
 	vote_average: number
 	vote_count: number
 }
+
+export interface QueryCache {
+	[key: string]: {
+		response: object
+		expireAt: number
+	}
+}
