@@ -46,11 +46,11 @@ const responsive = {
 
 const MyCarousel = ({ title, url }: IProps) => {
 	const fetchKey = title.toLowerCase().replace(/\s/g, '-')
-	const { data, error, isPending } = useFetch(fetchKey, url)
+	const { data, error, isLoading } = useFetch(fetchKey, url)
 	const result = (data as MovieListResponse)?.results || []
 
 	const apiRequestTemplate = () => {
-		if (isPending || data === null) {
+		if (isLoading || data === null) {
 			return <Loader />
 		} else if (error) {
 			return <ErrorMessage message={error} />

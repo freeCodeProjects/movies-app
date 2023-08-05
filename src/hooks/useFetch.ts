@@ -4,7 +4,7 @@ import { QueryCacheContext } from '../contexts/QueryCacheContext'
 const useFetch = (key: string, url: string) => {
 	const [data, setData] = useState(null)
 	const [error, setError] = useState('')
-	const [isPending, setIsPending] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 	const [startFetching, setStartFetching] = useState(false)
 	const { queryCache, setQueryCache } = useContext(QueryCacheContext)
 
@@ -25,7 +25,7 @@ const useFetch = (key: string, url: string) => {
 
 	const fetchRequest = async (url: string, signal: AbortSignal) => {
 		try {
-			setIsPending(true)
+			setIsLoading(true)
 			const res = await fetch(url, { signal })
 			const data = await res.json()
 			if (!res.ok) {
@@ -49,15 +49,15 @@ const useFetch = (key: string, url: string) => {
 				setError(String(error))
 			}
 		} finally {
-			setIsPending(false)
+			setIsLoading(false)
 		}
 	}
 
 	if (isValidCache) {
-		return { isPending: false, data: queryCache[key].response }
+		return { isLoading: false, data: queryCache[key].response }
 	}
 
-	return { isPending, data, error }
+	return { isLoading, data, error }
 }
 
 export default useFetch
