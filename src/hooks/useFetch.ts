@@ -1,16 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { QueryCacheContext } from '../contexts/QueryCacheContext'
 
-const useFetch = (url: string) => {
+const useFetch = (key: string, url: string) => {
 	const [data, setData] = useState(null)
 	const [error, setError] = useState('')
 	const [isPending, setIsPending] = useState(true)
+	const [startFetching, setStartFetching] = useState(false)
+	const { queryCache, setQueryCache } = useContext(QueryCacheContext)
 
 	useEffect(() => {
-		const controller = new AbortController()
-		const signal = controller.signal
-		fetchRequest(url, signal)
-		return () => controller.abort()
-	}, [url])
+		if (!(key in queryCache)) {
+			setStartFetching(true)
+		}
+		if (startFetching) {
+			const controller = new AbortController()
+			const signal = controller.signal
+			fetchRequest(url, signal)
+			return () => controller.abort()
+		}
+	}, [url, startFetching])
 
 	const fetchRequest = async (url: string, signal: AbortSignal) => {
 		try {
@@ -21,6 +29,7 @@ const useFetch = (url: string) => {
 				throw new Error(data.status_message)
 			} else {
 				setData(data)
+				setQueryCache((prevData) => ({ ...prevData, [key]: data }))
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -33,6 +42,10 @@ const useFetch = (url: string) => {
 		} finally {
 			setIsPending(false)
 		}
+	}
+
+	if (key in queryCache) {
+		return { isPending: false, data: queryCache[key] }
 	}
 
 	return { isPending, data, error }
