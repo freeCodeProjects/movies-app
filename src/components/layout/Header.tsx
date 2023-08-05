@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import logo from '../../assets/logo.svg'
 import dark from '../../assets/dark.svg'
 import light from '../../assets/light.svg'
+import Logo from '../ui/Logo'
 
 type Theme = 'light' | 'dark'
 
@@ -24,10 +24,7 @@ const Header = () => {
 	return (
 		<header className="header">
 			<div className="container nav">
-				<div className="nav__info">
-					<img className="nav__info__logo" src={logo} alt="app logo" />
-					<h3 className="nav__info__title">React Movies</h3>
-				</div>
+				<Logo />
 				<div className="nav__options">
 					<div className="theme-btn" onClick={toggleTheme}>
 						{theme === 'dark' ? (

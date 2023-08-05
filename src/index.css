@@ -11,7 +11,7 @@
   --secondary-color: #BEE3DB;
   --font-color     : #555B6E;
   --bg-color       : #FAF9F9;
-  --heading-color  : #FFD6BA;
+  --heading-color  : #b44d08;
 }
 
 [data-theme="dark"] {
@@ -33,8 +33,17 @@ body {
   color                  : var(--font-color);
 }
 
+a:-webkit-any-link:focus-visible {
+  outline: 0
+}
+
 a {
   text-decoration: none;
+  color          : inherit;
+}
+
+.home {
+  padding-bottom: 3rem;
 }
 
 .header {
@@ -91,4 +100,127 @@ a {
 .nav__options {
   justify-self: flex-end;
   display     : flex;
+}
+
+.carousel-item-center {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.zero-result {
+  font-size : 1.5rem;
+  text-align: center;
+}
+
+.my-carousel {
+  padding: 2rem 0;
+}
+
+.my-carousel-status {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.heading-1 {
+  text-align: center;
+  font-size : 3rem;
+  padding   : 3rem 0;
+}
+
+.heading-2 {
+  font-size: 2.4rem;
+  padding  : 0.75rem 0;
+}
+
+.heading-3 {
+  font-size: 2rem;
+  padding  : 0.5rem 0;
+}
+
+.loader {
+  height         : 100%;
+  width          : 100%;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  padding        : 3rem 0;
+}
+
+.loader img {
+  height: 6.4rem;
+  width : 6.4rem;
+}
+
+.error-msg {
+  font-size  : 2rem;
+  text-align : center;
+  color      : red;
+  padding-top: 2rem;
+}
+
+.carousel-item-center {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.movie-poster {
+  justify-self    : center;
+  cursor          : pointer;
+  height          : 278px;
+  width           : 185px;
+  display         : grid;
+  place-items     : center;
+  background-color: var(--secondary-color);
+  position        : relative;
+  box-shadow      : 0 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.movie-poster>img {
+  object-fit: cover;
+  height    : inherit;
+  width     : inherit;
+}
+
+.movie-poster>span {
+  font-size : 2rem;
+  padding   : 1rem;
+  text-align: center;
+}
+
+.movie-poster:hover>.movie-poster-overlay {
+  opacity: 1;
+}
+
+.movie-poster-overlay {
+  position       : absolute;
+  top            : 0;
+  width          : 100%;
+  height         : inherit;
+  display        : flex;
+  flex-direction : column;
+  justify-content: flex-end;
+  width          : inherit;
+  z-index        : 1;
+  opacity        : 0;
+  transition     : opacity 0.3s ease-in-out;
+}
+
+.movie-poster-overlay__title {
+  font-size       : 1.4rem;
+  padding         : 1rem;
+  text-align      : center;
+  width           : inherit;
+  background-color: var(--primary-color);
+}
+
+.page-loader {
+  height         : calc(100vh - 60px);
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  flex-direction : column;
+  padding-bottom : 2rem;
 }
