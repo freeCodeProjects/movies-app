@@ -34,3 +34,10 @@ export interface QueryCache {
 		expireAt: number
 	}
 }
+
+export interface InfiniteQueryCache {
+	[key: string]: {
+		response: object[]
+		expireAt: number
+	}
+}
