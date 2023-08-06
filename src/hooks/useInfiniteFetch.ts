@@ -6,23 +6,22 @@ const useInfiniteFetch = (key: string, url: string) => {
 	const [error, setError] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
 	const [isLoadingMore, setIsLoadingMore] = useState(false)
-	const [startFetching, setStartFetching] = useState(false)
 	const { queryCache, setQueryCache } = useContext(InfiniteQueryCacheContext)
 
 	const isValidCache =
 		(key in queryCache && queryCache[key].expireAt > Date.now()) || false
 
+	console.log('isValidCache : ', isValidCache)
+
 	useEffect(() => {
 		if (!isValidCache) {
-			setStartFetching(true)
-		}
-		if (startFetching) {
+			console.log('fetching new')
 			const controller = new AbortController()
 			const signal = controller.signal
 			fetchRequest(url, signal)
 			return () => controller.abort()
 		}
-	}, [url, startFetching])
+	}, [url])
 
 	const fetchRequest = async (url: string, signal: AbortSignal) => {
 		try {
@@ -85,7 +84,13 @@ const useInfiniteFetch = (key: string, url: string) => {
 	}
 
 	if (isValidCache) {
-		return { isLoading: false, data: queryCache[key].response }
+		return {
+			isLoading: false,
+			data: queryCache[key].response,
+			error,
+			fetchMore,
+			isLoadingMore
+		}
 	}
 
 	return { isLoading, data, error, fetchMore, isLoadingMore }
