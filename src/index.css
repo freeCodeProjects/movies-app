@@ -70,7 +70,7 @@ a {
 
 .nav {
   display              : grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
   align-items          : center;
   justify-items        : space-between;
 }
@@ -175,7 +175,12 @@ a {
   place-items     : center;
   background-color: var(--secondary-color);
   position        : relative;
-  box-shadow      : 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  transition      : box-shadow 0.3s ease-in-out, transform 0.3s ease-in;
+}
+
+.movie-poster:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  transform : scale(0.975);
 }
 
 .movie-poster>img {
@@ -223,4 +228,87 @@ a {
   align-items    : center;
   flex-direction : column;
   padding-bottom : 2rem;
+}
+
+.nav__searchbar {
+  justify-self    : center;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  border-radius   : 3rem;
+  height          : 4.5rem;
+  background-color: var(--secondary-color);
+  width           : 30rem;
+}
+
+.nav__searchbar__btn {
+  outline    : none;
+  border     : 0;
+  background : transparent;
+  padding    : 0.5rem;
+  display    : flex;
+  align-items: center;
+  cursor     : pointer;
+}
+
+.search-logo {
+  height          : 3.6rem;
+  width           : 3.6rem;
+  border-radius   : 50%;
+  background-color: white;
+  padding         : 0.5rem;
+}
+
+.nav__searchbar__input {
+  width     : 100%;
+  min-width : 20rem;
+  outline   : none;
+  border    : 0;
+  background: transparent;
+  align-self: flex-end;
+  padding   : 1rem 0 1rem 2rem;
+  font-size : 2rem;
+  color     : var(--font-color);
+}
+
+/* 42em = 672px screen size*/
+@media screen and (max-width: 42em) {
+  .header {
+    height: 10rem;
+  }
+
+  .app__content {
+    margin-top: 10rem;
+  }
+
+  .nav {
+    grid-template-rows   : 2;
+    grid-template-columns: repeat(2, auto);
+    grid-gap             : 0.5rem;
+  }
+
+  .nav__info {
+    grid-row: 1/1;
+  }
+
+  .nav__searchbar {
+    grid-row   : 2/3;
+    grid-column: 1/-1;
+  }
+
+  .movie-details-card .info {
+    min-height: unset;
+  }
+}
+
+.search-results,
+.favourite-movies {
+  padding-bottom: 5rem;
+}
+
+.search-results__content,
+.favourite-movies__content {
+  display              : grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap                  : 3rem;
 }
