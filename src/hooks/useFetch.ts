@@ -5,7 +5,6 @@ const useFetch = (key: string, url: string) => {
 	const [data, setData] = useState(null)
 	const [error, setError] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
-	const [startFetching, setStartFetching] = useState(false)
 	const { queryCache, setQueryCache } = useContext(QueryCacheContext)
 
 	const isValidCache =
@@ -13,15 +12,12 @@ const useFetch = (key: string, url: string) => {
 
 	useEffect(() => {
 		if (!isValidCache) {
-			setStartFetching(true)
-		}
-		if (startFetching) {
 			const controller = new AbortController()
 			const signal = controller.signal
 			fetchRequest(url, signal)
 			return () => controller.abort()
 		}
-	}, [url, startFetching])
+	}, [url])
 
 	const fetchRequest = async (url: string, signal: AbortSignal) => {
 		try {
