@@ -11,11 +11,9 @@ const useInfiniteFetch = (key: string, url: string) => {
 	const isValidCache =
 		(key in queryCache && queryCache[key].expireAt > Date.now()) || false
 
-	console.log('isValidCache : ', isValidCache)
-
 	useEffect(() => {
+		console.log('isValidCache : ', isValidCache, key)
 		if (!isValidCache) {
-			console.log('fetching new')
 			const controller = new AbortController()
 			const signal = controller.signal
 			fetchRequest(url, signal)
