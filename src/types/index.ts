@@ -92,3 +92,21 @@ export interface SpokenLanguage {
 	iso_639_1: string
 	name: string
 }
+
+export interface VideoResult {
+	id: number
+	results: Result[]
+}
+
+export interface Result {
+	iso_639_1: string
+	iso_3166_1: string
+	name: string
+	key: string
+	published_at: string
+	site: string
+	size: number
+	type: string
+	official: boolean
+	id: string
+}

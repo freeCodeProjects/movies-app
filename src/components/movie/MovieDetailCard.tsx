@@ -4,6 +4,8 @@ import { MovieResult } from '../../types'
 import ErrorMessage from '../ui/ErrorMessage'
 import Loader from '../ui/Loader'
 import { getFormattedRuntime, getMonthName } from '../../utils/helper'
+import playIcon from '../../assets/play.svg'
+import Trailer from './Trailer'
 
 const image_base_url = 'https://image.tmdb.org/t/p/w342'
 
@@ -19,6 +21,7 @@ const MovieDetailCard = ({ id }: IProps) => {
 	const [formattedReleaseDate, setFormattedreleaseDate] = useState('unknown')
 	const [formattedRuntime, setFormattedRuntime] = useState('0min')
 	const [genres, setGenres] = useState<string[]>([])
+	const [showTrailer, setShowTrailer] = useState(false)
 
 	const result = data as MovieResult | null
 
@@ -73,6 +76,13 @@ const MovieDetailCard = ({ id }: IProps) => {
 									<h3 className="heading-3">Genre</h3>
 									<p className="detail__info">{genres.join(', ')}</p>
 								</div>
+								<div
+									className="play-trailer"
+									onClick={() => setShowTrailer(true)}
+								>
+									<img src={playIcon} alt="play icon" />
+									<h3 className="heading-3">Play Trailer</h3>
+								</div>
 							</div>
 							<div className="overview">
 								<h2 className="heading-3">Overview</h2>
@@ -81,6 +91,9 @@ const MovieDetailCard = ({ id }: IProps) => {
 						</div>
 					</div>
 				</div>
+			)}
+			{showTrailer && (
+				<Trailer movieId={id} closeTrailer={() => setShowTrailer(false)} />
 			)}
 		</div>
 	)
