@@ -10,14 +10,17 @@ import Trailer from './Trailer'
 const image_base_url = 'https://image.tmdb.org/t/p/w342'
 
 type IProps = {
-	id: string
+	movieId: string
 }
 
-const MovieDetailCard = ({ id }: IProps) => {
+const MovieDetailCard = ({ movieId }: IProps) => {
 	const movie_detail_api = `${
 		import.meta.env.VITE_THE_MOVIEDB_BASE_URL
-	}/movie/${id}?api_key=${import.meta.env.VITE_THE_MOVIEDB_API_KEY}`
-	const { data, isLoading, error } = useFetch(`movie-${id}`, movie_detail_api)
+	}/movie/${movieId}?api_key=${import.meta.env.VITE_THE_MOVIEDB_API_KEY}`
+	const { data, isLoading, error } = useFetch(
+		`movie-${movieId}`,
+		movie_detail_api
+	)
 	const [formattedReleaseDate, setFormattedreleaseDate] = useState('unknown')
 	const [formattedRuntime, setFormattedRuntime] = useState('0min')
 	const [genres, setGenres] = useState<string[]>([])
@@ -93,7 +96,7 @@ const MovieDetailCard = ({ id }: IProps) => {
 				</div>
 			)}
 			{showTrailer && (
-				<Trailer movieId={id} closeTrailer={() => setShowTrailer(false)} />
+				<Trailer movieId={movieId} closeTrailer={() => setShowTrailer(false)} />
 			)}
 		</div>
 	)

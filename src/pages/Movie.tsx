@@ -5,7 +5,7 @@ const Movie = () => {
 	const { id } = useParams()
 	return (
 		<div className="container">
-			<MovieDetailCard key={id} id={id!} />
+			<MovieDetailCard key={id} movieId={id!} />
 		</div>
 	)
 }
