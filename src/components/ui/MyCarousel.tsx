@@ -50,10 +50,10 @@ const MyCarousel = ({ title, url }: IProps) => {
 	const result = (data as MovieListResponse)?.results || []
 
 	const apiRequestTemplate = () => {
-		if (isLoading || data === null) {
-			return <Loader />
-		} else if (error) {
+		if (error) {
 			return <ErrorMessage message={error} />
+		} else if (isLoading || data === null) {
+			return <Loader />
 		} else if (result.length > 0) {
 			return (
 				// height is required to restore scroll position
