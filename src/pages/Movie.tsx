@@ -1,7 +1,12 @@
 import { useParams } from 'react-router-dom'
+import MovieDetailCard from '../components/movie/MovieDetailCard'
 
 const Movie = () => {
 	const { id } = useParams()
-	return <h1>Movie with id: {id}</h1>
+	return (
+		<div className="container">
+			<MovieDetailCard key={id} id={id!} />
+		</div>
+	)
 }
 export default Movie

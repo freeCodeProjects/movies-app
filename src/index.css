@@ -271,6 +271,75 @@ a {
   color     : var(--font-color);
 }
 
+.movie-detail {
+  padding: 2rem 0;
+}
+
+.movie-details__content {
+  height         : 100%;
+  width          : 100%;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.movie-details-card {
+  display      : flex;
+  flex         : 1;
+  box-shadow   : 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  flex-wrap    : wrap;
+  margin-bottom: 2rem;
+}
+
+.movie-details-card .poster {
+  object-fit: cover;
+}
+
+.movie-details-card p {
+  font-size: 1.4rem;
+}
+
+.movie-details-card .info {
+  flex            : 1 32rem;
+  background-color: var(--secondary-color);
+  padding         : 2rem 3rem;
+  display         : flex;
+  flex-direction  : column;
+  gap             : 2rem;
+}
+
+.movie-details-card .info__header {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+}
+
+.movie-details-card .info__header img {
+  height: 3.6rem;
+  width : 3.6rem;
+  cursor: pointer;
+}
+
+.movie-details-card .details {
+  display    : flex;
+  align-items: center;
+  flex-wrap  : wrap;
+  gap        : 1rem 3rem;
+}
+
+.movie-details-card .play-trailer {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  gap            : 0.5rem;
+  cursor         : pointer;
+}
+
+.movie-details-card .play-trailer img {
+  height: 2rem;
+  width : 2rem;
+}
+
 /* 42em = 672px screen size*/
 @media screen and (max-width: 42em) {
   .header {
