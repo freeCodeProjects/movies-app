@@ -33,8 +33,6 @@ const SearchResult = ({ query }: IProps) => {
 	pagesFetchedSoFar = res ? res.length : 0
 	haveMore = totalPages !== pagesFetchedSoFar
 
-	console.log('pages : ', totalPages, pagesFetchedSoFar)
-
 	useEffect(() => {
 		if (haveMore && isIntersecting && !isLoadingMore) {
 			console.log('fetchMore Called')
