@@ -433,6 +433,29 @@ a {
   font-size    : 1.5rem;
 }
 
+.page-not-found {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  flex-direction : column;
+}
+
+.page-not-found__image {
+  height: 70vh;
+  width : 90vw;
+}
+
+.go-to-home-btn {
+  outline         : none;
+  border          : none;
+  padding         : 0.75rem 3rem;
+  font-size       : 2rem;
+  border-radius   : 0.25rem;
+  background-color: var(--secondary-color);
+  color           : var(--font-color);
+  cursor          : pointer;
+}
+
 /* 48em = 768px */
 @media screen and (max-width: 48em) {
   .movie-details-card .poster {

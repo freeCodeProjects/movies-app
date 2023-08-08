@@ -5,6 +5,7 @@ const Home = lazy(() => import('../pages/Home'))
 const Movie = lazy(() => import('../pages/Movie'))
 const Search = lazy(() => import('../pages/Search'))
 const Favourite = lazy(() => import('../pages/Favourite'))
+const PageNotFound = lazy(() => import('../pages/PageNotFound'))
 
 const AppRouter = createBrowserRouter([
 	{
@@ -15,7 +16,8 @@ const AppRouter = createBrowserRouter([
 			{ index: true, element: <Home /> },
 			{ path: '/movie/:id', element: <Movie /> },
 			{ path: '/search', element: <Search /> },
-			{ path: '/favourites', element: <Favourite /> }
+			{ path: '/favourite', element: <Favourite /> },
+			{ path: '*', element: <PageNotFound /> }
 		]
 	}
 ])
