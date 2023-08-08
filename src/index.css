@@ -379,14 +379,6 @@ a {
   justify-content : center;
 }
 
-.movie-cast__content {
-  display              : grid;
-  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
-  gap                  : 3rem 2rem;
-  font-size            : 1.5rem;
-  justify-content      : center;
-}
-
 .movie-cast__card {
   display        : flex;
   flex-direction : column;
@@ -395,8 +387,7 @@ a {
 }
 
 .movie-cast__card__content {
-  width    : 100%;
-  max-width: 28rem;
+  width: 185px;
 }
 
 .movie-cast__card__content img {
@@ -416,6 +407,7 @@ a {
   width        : 100%;
   text-align   : center;
   font-weight  : bolder;
+  font-size    : 1.5rem;
 }
 
 /* 48em = 768px */

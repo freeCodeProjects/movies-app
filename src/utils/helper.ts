@@ -58,3 +58,36 @@ export const getFormattedRuntime = (runtime: number) => {
 
 	return formattedRuntime.trim()
 }
+
+export const carouselResponsiveInfo = {
+	xxl: {
+		breakpoint: { max: 3000, min: 1440 },
+		items: 5,
+		slidesToSlide: 5
+	},
+	xl: {
+		breakpoint: { max: 1440, min: 1024 },
+		items: 5,
+		slidesToSlide: 5
+	},
+	l: {
+		breakpoint: { max: 1024, min: 830 },
+		items: 4,
+		slidesToSlide: 4
+	},
+	m: {
+		breakpoint: { max: 830, min: 630 },
+		items: 3,
+		slidesToSlide: 3
+	},
+	s: {
+		breakpoint: { max: 630, min: 420 },
+		items: 2,
+		slidesToSlide: 2
+	},
+	xs: {
+		breakpoint: { max: 420, min: 0 },
+		items: 1,
+		slidesToSlide: 1
+	}
+}

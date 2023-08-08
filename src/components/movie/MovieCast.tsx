@@ -2,6 +2,8 @@ import useFetch from '../../hooks/useFetch'
 import { Cast, CreditResult } from '../../types'
 import Loader from '../ui/Loader'
 import ErrorMessage from '../ui/ErrorMessage'
+import Carousel from 'react-multi-carousel'
+import { carouselResponsiveInfo } from '../../utils/helper'
 
 type IProps = {
 	movieId: string
@@ -34,7 +36,7 @@ const MovieCast = ({ movieId }: IProps) => {
 			) : isLoading || !result ? (
 				<Loader />
 			) : casts.length > 0 ? (
-				<div className="movie-cast__content">
+				<Carousel responsive={carouselResponsiveInfo}>
 					{casts.map((actor) => (
 						<div key={actor.id} className="movie-cast__card">
 							<div className="movie-cast__card__content">
@@ -46,7 +48,7 @@ const MovieCast = ({ movieId }: IProps) => {
 							</div>
 						</div>
 					))}
-				</div>
+				</Carousel>
 			) : (
 				<div className="zero-result">No cast found</div>
 			)}

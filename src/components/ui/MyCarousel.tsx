@@ -5,44 +5,12 @@ import MoviePoster from './MoviePoster'
 import Loader from './Loader'
 import ErrorMessage from './ErrorMessage'
 import { MovieListResponse } from '../../types'
+import { carouselResponsiveInfo } from '../../utils/helper'
 
 type IProps = {
 	title: string
 	url: string
 	queryKey?: string
-}
-
-const responsive = {
-	xxl: {
-		breakpoint: { max: 3000, min: 1440 },
-		items: 5,
-		slidesToSlide: 5
-	},
-	xl: {
-		breakpoint: { max: 1440, min: 1024 },
-		items: 5,
-		slidesToSlide: 5
-	},
-	l: {
-		breakpoint: { max: 1024, min: 830 },
-		items: 4,
-		slidesToSlide: 4
-	},
-	m: {
-		breakpoint: { max: 830, min: 630 },
-		items: 3,
-		slidesToSlide: 3
-	},
-	s: {
-		breakpoint: { max: 630, min: 420 },
-		items: 2,
-		slidesToSlide: 2
-	},
-	xs: {
-		breakpoint: { max: 420, min: 0 },
-		items: 1,
-		slidesToSlide: 1
-	}
 }
 
 const MyCarousel = ({ title, url, queryKey }: IProps) => {
@@ -59,7 +27,10 @@ const MyCarousel = ({ title, url, queryKey }: IProps) => {
 			return (
 				// height is required to restore scroll position
 				<div style={{ height: '278px' }}>
-					<Carousel responsive={responsive} itemClass="carousel-item-center">
+					<Carousel
+						responsive={carouselResponsiveInfo}
+						itemClass="carousel-item-center"
+					>
 						{result.map((movie) => (
 							<MoviePoster
 								key={movie.id}
