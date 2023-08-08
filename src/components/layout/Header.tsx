@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import dark from '../../assets/dark.svg'
 import light from '../../assets/light.svg'
 import Logo from '../ui/Logo'
@@ -12,7 +12,7 @@ const Header = () => {
 	const [theme, setTheme] = useState<Theme>(
 		(localStorage.getItem('theme') as Theme) || 'light'
 	)
-	const [search, setSearch] = useState('')
+	const searchInputRef = useRef<HTMLInputElement>(null)
 
 	const toggleTheme = () => {
 		const newTheme = theme === 'light' ? 'dark' : 'light'
@@ -23,9 +23,11 @@ const Header = () => {
 
 	const handleSearch = (e: FormEvent) => {
 		e.preventDefault()
-		if (search.trim().length > 0) {
-			navigate(`/search?q=${search.trim()}`)
+		const query = searchInputRef.current?.value.trim() || ''
+		if (query.length > 0) {
+			navigate(`/search?q=${query}`)
 		}
+		searchInputRef.current?.blur()
 	}
 
 	useEffect(() => {
@@ -41,7 +43,7 @@ const Header = () => {
 						className="nav__searchbar__input"
 						type="search"
 						placeholder="search movies"
-						onChange={(e) => setSearch(e.target.value)}
+						ref={searchInputRef}
 					/>
 					<button className="nav__searchbar__btn">
 						<img className="search-logo" src={searchLogo} alt="search logo" />
