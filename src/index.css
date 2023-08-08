@@ -396,7 +396,7 @@ a {
 
 .movie-cast__card__content {
   width    : 100%;
-  max-width: 22.4rem;
+  max-width: 28rem;
 }
 
 .movie-cast__card__content img {
@@ -407,7 +407,7 @@ a {
 }
 
 .movie-cast__card__content span {
-  padding      : 0.25rem;
+  padding      : 1rem;
   display      : block;
   overflow     : hidden;
   text-overflow: ellipsis;
@@ -415,6 +415,7 @@ a {
   background   : var(--secondary-color);
   width        : 100%;
   text-align   : center;
+  font-weight  : bolder;
 }
 
 /* 48em = 768px */
