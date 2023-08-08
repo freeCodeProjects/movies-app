@@ -148,3 +148,14 @@ export enum Department {
 	VisualEffects = 'Visual Effects',
 	Writing = 'Writing'
 }
+
+export interface FavouriteMovie {
+	id: number
+	title: string
+	poster_path: string
+}
+
+export interface FavouriteMovieStore {
+	movieIds: { [key: number]: true }
+	movies: FavouriteMovie[]
+}

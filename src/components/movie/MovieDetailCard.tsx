@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { MovieResult } from '../../types'
 import ErrorMessage from '../ui/ErrorMessage'
@@ -6,6 +6,9 @@ import Loader from '../ui/Loader'
 import { getFormattedRuntime, getMonthName } from '../../utils/helper'
 import playIcon from '../../assets/play.svg'
 import Trailer from './Trailer'
+import favouriteIcon from '../../assets/addToFavourite.svg'
+import deleteIcon from '../../assets/delete.svg'
+import { FavouriteMovieContext } from '../../contexts/FavouriteMovieContext'
 
 const image_base_url = 'https://image.tmdb.org/t/p/w342'
 
@@ -25,6 +28,9 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 	const [formattedRuntime, setFormattedRuntime] = useState('0min')
 	const [genres, setGenres] = useState<string[]>([])
 	const [showTrailer, setShowTrailer] = useState(false)
+	const { isFavorite, addFavorite, deleteFavorite } = useContext(
+		FavouriteMovieContext
+	)
 
 	const result = data as MovieResult | null
 
@@ -65,6 +71,21 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 						<div className="info">
 							<div className="info__header">
 								<h1 className="heading-2">{result.title}</h1>
+								{isFavorite(result.id) ? (
+									<img
+										src={deleteIcon}
+										onClick={() => deleteFavorite(result.id)}
+										alt="delete icon"
+									/>
+								) : (
+									<img
+										src={favouriteIcon}
+										onClick={() =>
+											addFavorite(result.id, result.title, result.poster_path)
+										}
+										alt="favourite icon"
+									/>
+								)}
 							</div>
 							<div className="details">
 								<div className="detail">

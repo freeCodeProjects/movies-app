@@ -4,6 +4,7 @@ import Root from '../components/layout/Root'
 const Home = lazy(() => import('../pages/Home'))
 const Movie = lazy(() => import('../pages/Movie'))
 const Search = lazy(() => import('../pages/Search'))
+const Favourite = lazy(() => import('../pages/Favourite'))
 
 const AppRouter = createBrowserRouter([
 	{
@@ -13,7 +14,8 @@ const AppRouter = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home /> },
 			{ path: '/movie/:id', element: <Movie /> },
-			{ path: '/search', element: <Search /> }
+			{ path: '/search', element: <Search /> },
+			{ path: '/favourites', element: <Favourite /> }
 		]
 	}
 ])

@@ -11,6 +11,7 @@ const useFetch = (key: string, url: string) => {
 		(key in queryCache && queryCache[key].expireAt > Date.now()) || false
 
 	useEffect(() => {
+		console.log('isValidCache : ', isValidCache, key)
 		if (!isValidCache) {
 			const controller = new AbortController()
 			const signal = controller.signal

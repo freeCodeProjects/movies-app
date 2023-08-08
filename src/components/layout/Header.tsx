@@ -3,7 +3,8 @@ import dark from '../../assets/dark.svg'
 import light from '../../assets/light.svg'
 import Logo from '../ui/Logo'
 import searchLogo from '../../assets/search.svg'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import favourite from '../../assets/favourite.svg'
 
 type Theme = 'light' | 'dark'
 
@@ -57,6 +58,13 @@ const Header = () => {
 							<img src={light} alt="light logo" />
 						)}
 					</div>
+					<Link to="/favourites">
+						<img
+							className="favourite-btn"
+							src={favourite}
+							alt="favourite logo"
+						/>
+					</Link>
 				</div>
 			</div>
 		</header>

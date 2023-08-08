@@ -27,8 +27,6 @@ const Trailer = ({ movieId, closeTrailer }: IProps) => {
 		movie_video_api
 	)
 
-	console.log(data, isLoading)
-
 	const result = data as VideoResult | null
 
 	useEffect(() => {

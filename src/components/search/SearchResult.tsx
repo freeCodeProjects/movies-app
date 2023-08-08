@@ -35,7 +35,6 @@ const SearchResult = ({ query }: IProps) => {
 
 	useEffect(() => {
 		if (haveMore && isIntersecting && !isLoadingMore) {
-			console.log('fetchMore Called')
 			fetchMore(`${search_movie_api}&page=${pagesFetchedSoFar + 1}`)
 		}
 	}, [isIntersecting])
