@@ -36,19 +36,21 @@ const MovieCast = ({ movieId }: IProps) => {
 			) : isLoading || !result ? (
 				<Loader />
 			) : casts.length > 0 ? (
-				<Carousel responsive={carouselResponsiveInfo}>
-					{casts.map((actor) => (
-						<div key={actor.id} className="movie-cast__card">
-							<div className="movie-cast__card__content">
-								<img
-									src={`${image_base_url}${actor.profile_path}`}
-									alt={`${actor.name} avatar`}
-								/>
-								<span>{actor.name}</span>
+				<div style={{ height: '316px' }}>
+					<Carousel responsive={carouselResponsiveInfo}>
+						{casts.map((actor) => (
+							<div key={actor.id} className="movie-cast__card">
+								<div className="movie-cast__card__content">
+									<img
+										src={`${image_base_url}${actor.profile_path}`}
+										alt={`${actor.name} avatar`}
+									/>
+									<span>{actor.name}</span>
+								</div>
 							</div>
-						</div>
-					))}
-				</Carousel>
+						))}
+					</Carousel>
+				</div>
 			) : (
 				<div className="zero-result">No cast found</div>
 			)}
