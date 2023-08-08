@@ -271,7 +271,7 @@ a {
   color     : var(--font-color);
 }
 
-.movie-detail {
+.movie {
   padding: 2rem 0;
 }
 
@@ -292,7 +292,9 @@ a {
 }
 
 .movie-details-card .poster {
-  object-fit: cover;
+  object-fit  : cover;
+  width       : 342px;
+  aspect-ratio: 2/3;
 }
 
 .movie-details-card p {
@@ -379,8 +381,8 @@ a {
 
 .movie-cast__content {
   display              : grid;
-  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-  gap                  : 2rem 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+  gap                  : 3rem 2rem;
   font-size            : 1.5rem;
   justify-content      : center;
 }
@@ -394,13 +396,14 @@ a {
 
 .movie-cast__card__content {
   width    : 100%;
-  max-width: 28rem;
+  max-width: 22.4rem;
 }
 
 .movie-cast__card__content img {
-  width     : 100%;
-  object-fit: cover;
-  display   : block;
+  width       : 100%;
+  aspect-ratio: 2/3;
+  object-fit  : cover;
+  display     : block;
 }
 
 .movie-cast__card__content span {

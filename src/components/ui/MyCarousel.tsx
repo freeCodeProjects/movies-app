@@ -9,6 +9,7 @@ import { MovieListResponse } from '../../types'
 type IProps = {
 	title: string
 	url: string
+	queryKey?: string
 }
 
 const responsive = {
@@ -44,8 +45,8 @@ const responsive = {
 	}
 }
 
-const MyCarousel = ({ title, url }: IProps) => {
-	const fetchKey = title.toLowerCase().replace(/\s/g, '-')
+const MyCarousel = ({ title, url, queryKey }: IProps) => {
+	const fetchKey = queryKey || title.toLowerCase().replace(/\s/g, '-')
 	const { data, error, isLoading } = useFetch(fetchKey, url)
 	const result = (data as MovieListResponse)?.results || []
 

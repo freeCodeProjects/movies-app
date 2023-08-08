@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { Cast, CreditResult } from '../../types'
 import Loader from '../ui/Loader'
@@ -11,8 +10,6 @@ type IProps = {
 const image_base_url = 'https://image.tmdb.org/t/p/w342'
 
 const MovieCast = ({ movieId }: IProps) => {
-	const [cast, setCast] = useState<Cast[]>([])
-
 	const movie_cast_api = `${
 		import.meta.env.VITE_THE_MOVIEDB_BASE_URL
 	}/movie/${movieId}/credits?api_key=${
@@ -22,25 +19,23 @@ const MovieCast = ({ movieId }: IProps) => {
 		`movie-cast-${movieId}`,
 		movie_cast_api
 	)
+	let casts: Cast[] = []
 
 	const result = data as CreditResult | null
-
-	useEffect(() => {
-		if (result?.cast) {
-			setCast(result.cast.filter((actor) => actor.profile_path != null))
-		}
-	}, [result])
+	if (result?.cast) {
+		casts = result.cast.filter((actor) => actor.profile_path != null)
+	}
 
 	return (
 		<div className="movie-cast">
 			<h1 className="heading-1">Movie Cast</h1>
-			<div className="movie-cast__content">
-				{isLoading ? (
-					<Loader />
-				) : error ? (
-					<ErrorMessage message={error} />
-				) : cast.length > 0 ? (
-					cast.map((actor) => (
+			{error ? (
+				<ErrorMessage message={error} />
+			) : isLoading || !result ? (
+				<Loader />
+			) : casts.length > 0 ? (
+				<div className="movie-cast__content">
+					{casts.map((actor) => (
 						<div key={actor.id} className="movie-cast__card">
 							<div className="movie-cast__card__content">
 								<img
@@ -50,11 +45,11 @@ const MovieCast = ({ movieId }: IProps) => {
 								<span>{actor.name}</span>
 							</div>
 						</div>
-					))
-				) : (
-					<div className="zero-result">No cast found</div>
-				)}
-			</div>
+					))}
+				</div>
+			) : (
+				<div className="zero-result">No cast found</div>
+			)}
 		</div>
 	)
 }

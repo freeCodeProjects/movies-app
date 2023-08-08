@@ -46,7 +46,7 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 	}, [result])
 
 	return (
-		<div className="movie-detail">
+		<div>
 			<h1 className="heading-1">Movie Details</h1>
 			{error ? (
 				<ErrorMessage message={error} />
