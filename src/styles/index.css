@@ -462,10 +462,9 @@ a {
 }
 
 .movie-cast__card__content {
-  border-radius      : 1rem;
-  overflow           : hidden;
-  width              : 216px;
-  /* background-color: var(--primary-color); */
+  border-radius: 1rem;
+  overflow     : hidden;
+  width        : 216px;
 }
 
 .movie-cast__card__content img {
