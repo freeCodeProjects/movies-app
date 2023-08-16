@@ -42,7 +42,7 @@ const MovieCast = ({ movieId }: IProps) => {
 				<ErrorMessage message={error} />
 			) : isLoading || !result ? (
 				<Loader />
-			) : !casts ? (
+			) : !casts || casts.length === 0 ? (
 				<div className="zero-result">No cast found</div>
 			) : (
 				<div style={{ height: '360px' }}>
