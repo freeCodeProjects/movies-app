@@ -362,6 +362,8 @@ a {
   box-shadow   : 0 0 2px 1px rgba(0, 0, 0, 0.2);
   flex-wrap    : wrap;
   margin-bottom: 2rem;
+  border-radius: 1rem;
+  overflow     : hidden;
 }
 
 .movie-details-card .poster {
@@ -411,8 +413,8 @@ a {
 }
 
 .movie-details-card .play-trailer img {
-  height: 2rem;
-  width : 2rem;
+  height: 4rem;
+  width : 4rem;
 }
 
 .trailer {

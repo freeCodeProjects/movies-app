@@ -9,8 +9,10 @@ import Trailer from './Trailer'
 import favouriteIcon from '../../assets/addToFavourite.svg'
 import deleteIcon from '../../assets/delete.svg'
 import { FavouriteMovieContext } from '../../contexts/FavouriteMovieContext'
+import NoPosterImg from '../../assets/no-poster.svg'
+import CircleRating from '../ui/CircularRating'
 
-const image_base_url = 'https://image.tmdb.org/t/p/w342'
+const image_base_url = 'https://image.tmdb.org/t/p/w500'
 
 type IProps = {
 	movieId: string
@@ -33,6 +35,8 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 
 	const result = data as MovieResult | null
 
+	const rating = parseFloat(result?.vote_average.toFixed(1) || '0')
+
 	useEffect(() => {
 		if (!result) return
 		if (result.genres) {
@@ -50,10 +54,16 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 			) : (
 				<div className="movie-details__content">
 					<div className="movie-details-card">
-						{result?.poster_path && (
+						{result?.poster_path ? (
 							<img
 								className="poster"
 								src={`${image_base_url}${result.poster_path}`}
+								alt={`${result.title} movie poster`}
+							/>
+						) : (
+							<img
+								className="poster"
+								src={NoPosterImg}
 								alt={`${result.title} movie poster`}
 							/>
 						)}
@@ -76,7 +86,25 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 									/>
 								)}
 							</div>
+							<div style={{ display: 'flex', gap: '2rem' }}>
+								{Boolean(rating) && (
+									<div style={{ width: '4rem' }}>
+										<CircleRating rating={rating} />
+									</div>
+								)}
+								<div
+									className="play-trailer"
+									onClick={() => setShowTrailer(true)}
+								>
+									<img src={playIcon} alt="play icon" />
+									<h3 className="heading-2">Play Trailer</h3>
+								</div>
+							</div>
 							<div className="details">
+								<div className="detail">
+									<h3 className="heading-3">Status</h3>
+									<p className="detail__info">{result.status || 'Unknown'}</p>
+								</div>
 								<div className="detail">
 									<h3 className="heading-3">Release Date</h3>
 									<p className="detail__info">
@@ -86,24 +114,17 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 								<div className="detail">
 									<h3 className="heading-3">Duration</h3>
 									<p className="detail__info">
-										{getFormattedRuntime(result.runtime)}
+										{getFormattedRuntime(result.runtime) || 'Unknown'}
 									</p>
 								</div>
 								<div className="detail">
 									<h3 className="heading-3">Genre</h3>
 									<p className="detail__info">{genres.join(', ')}</p>
 								</div>
-								<div
-									className="play-trailer"
-									onClick={() => setShowTrailer(true)}
-								>
-									<img src={playIcon} alt="play icon" />
-									<h3 className="heading-3">Play Trailer</h3>
-								</div>
 							</div>
 							<div className="overview">
 								<h2 className="heading-3">Overview</h2>
-								<p>{result?.overview}</p>
+								<p>{result?.overview || 'Not provided'}</p>
 							</div>
 						</div>
 					</div>
