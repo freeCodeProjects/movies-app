@@ -3,7 +3,7 @@ import useFetch from '../../hooks/useFetch'
 import { MovieResult } from '../../types'
 import ErrorMessage from '../ui/ErrorMessage'
 import Loader from '../ui/Loader'
-import { getFormattedRuntime, getMonthName } from '../../utils/helper'
+import { getFormattedRuntime, getFormattedDate } from '../../utils/helper'
 import playIcon from '../../assets/play.svg'
 import Trailer from './Trailer'
 import favouriteIcon from '../../assets/addToFavourite.svg'
@@ -24,8 +24,7 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 		`movie-${movieId}`,
 		movie_detail_api
 	)
-	const [formattedReleaseDate, setFormattedreleaseDate] = useState('unknown')
-	const [formattedRuntime, setFormattedRuntime] = useState('0min')
+
 	const [genres, setGenres] = useState<string[]>([])
 	const [showTrailer, setShowTrailer] = useState(false)
 	const { isFavorite, addFavorite, deleteFavorite } = useContext(
@@ -36,16 +35,6 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 
 	useEffect(() => {
 		if (!result) return
-		if (result.release_date) {
-			const dateObj = new Date(result.release_date)
-			const date = dateObj.getDate()
-			const month = getMonthName(dateObj.getMonth() + 1)
-			const year = dateObj.getFullYear()
-			setFormattedreleaseDate(`${date} ${month} ${year}`)
-		}
-		if (result.runtime) {
-			setFormattedRuntime(getFormattedRuntime(result.runtime))
-		}
 		if (result.genres) {
 			setGenres(result.genres.map((genere) => genere.name))
 		}
@@ -90,11 +79,15 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 							<div className="details">
 								<div className="detail">
 									<h3 className="heading-3">Release Date</h3>
-									<p className="detail__info">{formattedReleaseDate}</p>
+									<p className="detail__info">
+										{getFormattedDate(result.release_date)}
+									</p>
 								</div>
 								<div className="detail">
 									<h3 className="heading-3">Duration</h3>
-									<p className="detail__info">{formattedRuntime}</p>
+									<p className="detail__info">
+										{getFormattedRuntime(result.runtime)}
+									</p>
 								</div>
 								<div className="detail">
 									<h3 className="heading-3">Genre</h3>

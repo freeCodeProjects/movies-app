@@ -26,7 +26,7 @@ const MyCarousel = ({ title, url, queryKey }: IProps) => {
 		} else if (result.length > 0) {
 			return (
 				// height is required to restore scroll position
-				<div style={{ height: '278px' }}>
+				<div style={{ height: '400px' }}>
 					<Carousel
 						responsive={carouselResponsiveInfo}
 						itemClass="carousel-item-center"
@@ -37,6 +37,9 @@ const MyCarousel = ({ title, url, queryKey }: IProps) => {
 								id={movie.id}
 								posterPath={movie.poster_path}
 								title={movie.title}
+								rating={parseFloat(movie.vote_average.toFixed(1))}
+								release_date={movie.release_date}
+								genre_ids={movie.genre_ids}
 							/>
 						))}
 					</Carousel>

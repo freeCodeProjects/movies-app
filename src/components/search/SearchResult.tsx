@@ -49,6 +49,9 @@ const SearchResult = ({ query }: IProps) => {
 							id={movie.id}
 							posterPath={movie.poster_path}
 							title={movie.title}
+							rating={parseFloat(movie.vote_average.toFixed(1))}
+							release_date={movie.release_date}
+							genre_ids={movie.genre_ids}
 						/>
 					))
 				})}

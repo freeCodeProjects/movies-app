@@ -1,4 +1,4 @@
-export const getMonthName = (monthNum: number) => {
+const getMonthName = (monthNum: number) => {
 	let month = ''
 	switch (monthNum) {
 		case 1:
@@ -43,6 +43,17 @@ export const getMonthName = (monthNum: number) => {
 	return month
 }
 
+export const getFormattedDate = (value: string) => {
+	if (!value) {
+		return 'Invalide Date'
+	}
+	const dateObj = new Date(value)
+	const date = dateObj.getDate()
+	const month = getMonthName(dateObj.getMonth() + 1)
+	const year = dateObj.getFullYear()
+	return `${date} ${month} ${year}`
+}
+
 export const getFormattedRuntime = (runtime: number) => {
 	let formattedRuntime = ''
 	let hours = 0
@@ -59,6 +70,32 @@ export const getFormattedRuntime = (runtime: number) => {
 	return formattedRuntime.trim()
 }
 
+const movieGenreById: { [key: number]: string } = {
+	28: 'Action',
+	12: 'Adventure',
+	16: 'Animation',
+	35: 'Comedy',
+	80: 'Crime',
+	99: 'Documentary',
+	18: 'Drama',
+	10751: 'Family',
+	14: 'Fantasy',
+	36: 'History',
+	27: 'Horror',
+	10402: 'Music',
+	9648: 'Mystery',
+	10749: 'Romance',
+	878: 'Science Fiction',
+	10770: 'TV Movie',
+	53: 'Thriller',
+	10752: 'War',
+	37: 'Western'
+}
+
+export const getGenreById = (id: number) => {
+	return movieGenreById[id]
+}
+
 export const carouselResponsiveInfo = {
 	xxl: {
 		breakpoint: { max: 3000, min: 1440 },
@@ -66,27 +103,27 @@ export const carouselResponsiveInfo = {
 		slidesToSlide: 5
 	},
 	xl: {
-		breakpoint: { max: 1440, min: 1024 },
+		breakpoint: { max: 1440, min: 1200 },
 		items: 5,
 		slidesToSlide: 5
 	},
 	l: {
-		breakpoint: { max: 1024, min: 830 },
+		breakpoint: { max: 1200, min: 978 },
 		items: 4,
 		slidesToSlide: 4
 	},
 	m: {
-		breakpoint: { max: 830, min: 630 },
+		breakpoint: { max: 978, min: 726 },
 		items: 3,
 		slidesToSlide: 3
 	},
 	s: {
-		breakpoint: { max: 630, min: 420 },
+		breakpoint: { max: 726, min: 484 },
 		items: 2,
 		slidesToSlide: 2
 	},
 	xs: {
-		breakpoint: { max: 420, min: 0 },
+		breakpoint: { max: 484, min: 0 },
 		items: 1,
 		slidesToSlide: 1
 	}

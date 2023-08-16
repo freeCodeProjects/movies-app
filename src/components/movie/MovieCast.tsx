@@ -36,7 +36,7 @@ const MovieCast = ({ movieId }: IProps) => {
 			) : isLoading || !result ? (
 				<Loader />
 			) : casts.length > 0 ? (
-				<div style={{ height: '316px' }}>
+				<div style={{ height: '360px' }}>
 					<Carousel responsive={carouselResponsiveInfo}>
 						{casts.map((actor) => (
 							<div key={actor.id} className="movie-cast__card">
@@ -45,7 +45,7 @@ const MovieCast = ({ movieId }: IProps) => {
 										src={`${image_base_url}${actor.profile_path}`}
 										alt={`${actor.name} avatar`}
 									/>
-									<span>{actor.name}</span>
+									<span className="truncate">{actor.name}</span>
 								</div>
 							</div>
 						))}
