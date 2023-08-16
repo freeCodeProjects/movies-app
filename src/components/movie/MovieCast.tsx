@@ -4,6 +4,7 @@ import Loader from '../ui/Loader'
 import ErrorMessage from '../ui/ErrorMessage'
 import Carousel from 'react-multi-carousel'
 import { carouselResponsiveInfo } from '../../utils/helper'
+import emptyUser from '../../assets/empty-user.svg'
 
 type IProps = {
 	movieId: string
@@ -21,11 +22,17 @@ const MovieCast = ({ movieId }: IProps) => {
 		`movie-cast-${movieId}`,
 		movie_cast_api
 	)
-	let casts: Cast[] = []
+	let casts: Cast[] | null = null
 
 	const result = data as CreditResult | null
 	if (result?.cast) {
-		casts = result.cast.filter((actor) => actor.profile_path != null)
+		const castWithPhoto = result.cast.filter(
+			(actor) => actor.profile_path !== null
+		)
+		const castWithoutPhoto = result.cast.filter(
+			(actor) => actor.profile_path === null
+		)
+		casts = [...castWithPhoto, ...castWithoutPhoto]
 	}
 
 	return (
@@ -35,24 +42,32 @@ const MovieCast = ({ movieId }: IProps) => {
 				<ErrorMessage message={error} />
 			) : isLoading || !result ? (
 				<Loader />
-			) : casts.length > 0 ? (
+			) : !casts ? (
+				<div className="zero-result">No cast found</div>
+			) : (
 				<div style={{ height: '360px' }}>
 					<Carousel responsive={carouselResponsiveInfo}>
 						{casts.map((actor) => (
 							<div key={actor.id} className="movie-cast__card">
 								<div className="movie-cast__card__content">
-									<img
-										src={`${image_base_url}${actor.profile_path}`}
-										alt={`${actor.name} avatar`}
-									/>
+									{actor.profile_path ? (
+										<img
+											src={`${image_base_url}${actor.profile_path}`}
+											alt={`${actor.name} avatar`}
+										/>
+									) : (
+										<img
+											style={{ backgroundColor: 'var(--primary-color)' }}
+											src={emptyUser}
+											alt={`avatar not found`}
+										/>
+									)}
 									<span className="truncate">{actor.name}</span>
 								</div>
 							</div>
 						))}
 					</Carousel>
 				</div>
-			) : (
-				<div className="zero-result">No cast found</div>
 			)}
 		</div>
 	)

@@ -62,6 +62,7 @@ const MovieDetailCard = ({ movieId }: IProps) => {
 							/>
 						) : (
 							<img
+								style={{ backgroundColor: 'var(--primary-color)' }}
 								className="poster"
 								src={NoPosterImg}
 								alt={`${result.title} movie poster`}
