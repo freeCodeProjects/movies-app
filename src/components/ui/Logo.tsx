@@ -4,7 +4,7 @@ const Logo = () => {
 	return (
 		<Link to="/" className="nav__info">
 			<img className="nav__info__logo" src={logo} alt="app logo" />
-			<h3 className="nav__info__title">React Movies</h3>
+			<h3 className="nav__info__title">Movies App</h3>
 		</Link>
 	)
 }
