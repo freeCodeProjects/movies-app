@@ -9,16 +9,16 @@
 [data-theme="light"] {
   --primary-color  : #89B0AE;
   --secondary-color: #BEE3DB;
-  --font-color     : #555B6E;
+  --font-color     : #000000;
   --bg-color       : #FAF9F9;
   --heading-color  : #b44d08;
 }
 
 [data-theme="dark"] {
-  --primary-color  : #9A97F3;
-  --secondary-color: #818cab;
-  --font-color     : #e1e1ff;
-  --bg-color       : #264653;
+  --primary-color  : #0c0b20;
+  --secondary-color: #181d28;
+  --font-color     : #ffffff;
+  --bg-color       : #1a323b;
   --heading-color  : #fefae0;
 }
 
@@ -165,6 +165,7 @@ a {
 
 .carousel-item-center {
   display        : flex;
+  align-self     : baseline;
   align-items    : center;
   justify-content: center;
 }
@@ -203,12 +204,6 @@ a {
   text-align : center;
   color      : red;
   padding-top: 2rem;
-}
-
-.carousel-item-center {
-  display        : flex;
-  align-items    : center;
-  justify-content: center;
 }
 
 .movie-poster-container {

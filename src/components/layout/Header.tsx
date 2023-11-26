@@ -52,7 +52,7 @@ const Header = () => {
 				</form>
 				<div className="nav__options">
 					<div className="theme-btn" onClick={toggleTheme}>
-						{theme === 'dark' ? (
+						{theme === 'light' ? (
 							<img src={dark} alt="dark logo" />
 						) : (
 							<img src={light} alt="light logo" />
