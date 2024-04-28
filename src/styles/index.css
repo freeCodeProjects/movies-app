@@ -255,7 +255,8 @@ a {
   width   : 4.8rem;
   bottom  : -2rem;
   left    : 1rem;
-  position: absolute
+  position: absolute;
+  z-index : 2;
 }
 
 .movie-poster-genres {
