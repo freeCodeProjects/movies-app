@@ -34,7 +34,7 @@ const useInfiniteFetch = (key: string, url: string) => {
 					...prevData,
 					[key]: {
 						response: [data],
-						expireAt: Date.now() + 600000 //5 minutes
+						expireAt: Date.now() + 3600000 //1 hour
 					}
 				}))
 			}
